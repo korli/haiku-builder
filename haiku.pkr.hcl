@@ -112,7 +112,7 @@ source "qemu" "qemu" {
   boot_wait = "45s"
 
   boot_command = [
-    "<enter><wait20s>",
+    "<enter><wait30s>",
     "<menu><wait5s>",
     "<down><down><down><down><down><down><down><down><down><down><right><wait2s>",
     "<down><down><down><down><down><down><down><down><down><down><down><down><down><down><down><down><down><down><down><down><down><down><down><down><down><enter><wait5s>",
@@ -123,7 +123,7 @@ source "qemu" "qemu" {
     "Installer<enter><wait2s>",
     "<enter><wait3s>",
     "<tab><wait1s><tab><wait1s><down><wait1s><up><wait1s><down><wait1s><enter><wait1s><enter><wait45s>",
-    "<enter>",
+    "<enter><wait1s>",
     "shutdown -r<enter>"
   ]
 

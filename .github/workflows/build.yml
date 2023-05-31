@@ -20,6 +20,7 @@ jobs:
             - 'r1beta4'
 
           architecture:
+            - x86
             - x86-64
 
     steps:
