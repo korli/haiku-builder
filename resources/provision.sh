@@ -46,7 +46,7 @@ install_extra_packages() {
   else
 	  pkgman update -y webpositive
   fi
-  pkgman install -y rsync
+  pkgman install -y cmd:rsync
 }
 
 setup_secondary_user
