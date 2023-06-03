@@ -40,12 +40,13 @@ EOF
 
 
 install_extra_packages() {
+  pkgman update -y haiku haiku_devel haiku_loader haiku_datatranslators
   if [[ "`uname -m`" == "BePC" ]]; then
-	  pkgman update -y haiku haiku_devel haiku_loader haiku_datatranslators
 	  pkgman update -y haiku_x86 haiku_x86_devel webpositive_x86
   else
-	  pkgman update -y haiku haiku_devel haiku_loader haiku_datatranslators webpositive
+	  pkgman update -y webpositive
   fi
+  pkgman install -y rsync
 }
 
 setup_secondary_user
