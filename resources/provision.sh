@@ -7,6 +7,14 @@ setup_secondary_user() {
   useradd -d /boot/"$SECONDARY_USER_USERNAME" -s "$SHELL" "$SECONDARY_USER_USERNAME"
   mkdir -p /boot/"$SECONDARY_USER_USERNAME"
   chown "$SECONDARY_USER_USERNAME" /boot/"$SECONDARY_USER_USERNAME"
+
+  ssh-keygen -t ed25519 -f /tmp/id_ed25519 -q -N ""
+  SSH_DIR="/boot/${SECONDARY_USER_USERNAME}/config/settings/ssh"
+  mkdir -p "$SSH_DIR" /boot/home/config/settings/ssh/
+  mv /tmp/id_ed25519 "$SSH_DIR/"
+  chown -R "$SECONDARY_USER_USERNAME:root" "/boot/${SECONDARY_USER_USERNAME}/config"
+  mv /tmp/id_ed25519.pub /boot/home/config/settings/ssh/authorized_keys
+  chmod 600 /boot/home/config/settings/ssh/authorized_keys
 }
 
 configure_boot_scripts() {
