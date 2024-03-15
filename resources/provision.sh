@@ -8,13 +8,19 @@ setup_secondary_user() {
   mkdir -p /boot/"$SECONDARY_USER_USERNAME"
   chown "$SECONDARY_USER_USERNAME" /boot/"$SECONDARY_USER_USERNAME"
 
-  ssh-keygen -t ed25519 -f /tmp/id_ed25519 -q -N ""
   SSH_DIR="/boot/${SECONDARY_USER_USERNAME}/config/settings/ssh"
   mkdir -p "$SSH_DIR" /boot/home/config/settings/ssh/
+
+  ssh-keygen -t ed25519 -f /tmp/id_ed25519 -q -N ""
   mv /tmp/id_ed25519 "$SSH_DIR/"
-  chown -R "$SECONDARY_USER_USERNAME:root" "/boot/${SECONDARY_USER_USERNAME}/config"
   mv /tmp/id_ed25519.pub /boot/home/config/settings/ssh/authorized_keys
+
+  ssh-keygen -R localhost -f "$SSH_DIR/known_hosts"
+
+  chown -R "$SECONDARY_USER_USERNAME:root" "/boot/${SECONDARY_USER_USERNAME}/config"
+
   chmod 600 /boot/home/config/settings/ssh/authorized_keys
+
 }
 
 configure_boot_scripts() {
@@ -32,7 +38,7 @@ install_authorized_keys() {
   SSH_DIR="/boot/${SECONDARY_USER_USERNAME}/config/settings/ssh"
   if [ -s "\$RESOURCES_MOUNT_PATH/keys" ]; then
     mkdir -p "\$SSH_DIR"
-    cp "\$RESOURCES_MOUNT_PATH/keys" "\$SSH_DIR/authorized_keys"
+    cat "\$RESOURCES_MOUNT_PATH/keys" >> "\$SSH_DIR/authorized_keys"
     chmod 600 "\$SSH_DIR/authorized_keys"
     chown -R "${SECONDARY_USER_USERNAME}:root" "/boot/${SECONDARY_USER_USERNAME}/config"
   fi
