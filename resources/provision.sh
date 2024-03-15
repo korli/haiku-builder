@@ -15,7 +15,7 @@ setup_secondary_user() {
   mv /tmp/id_ed25519 "$SSH_DIR/"
   mv /tmp/id_ed25519.pub /boot/home/config/settings/ssh/authorized_keys
 
-  ssh-keygen -R localhost -f "$SSH_DIR/known_hosts"
+  ssh-keyscan localhost >> "$SSH_DIR/known_hosts"
 
   chown -R "$SECONDARY_USER_USERNAME:root" "/boot/${SECONDARY_USER_USERNAME}/config"
 
