@@ -100,7 +100,7 @@ source "qemu" "qemu" {
   net_device = "virtio-net"
 
   disk_compression = true
-  disk_interface = "virtio"
+  disk_interface = "virtio-scsi"
   disk_size = var.disk_size
   format = "qcow2"
 
@@ -118,7 +118,7 @@ source "qemu" "qemu" {
     "<down><down><down><down><down><down><down><down><down><down><down><down><down><down><down><down><down><down><down><down><down><down><down><down><down><enter><wait5s>",
     "echo \"PermitRootLogin yes\" >> /system/settings/ssh/sshd_config<enter>",
     "passwd<enter>${var.root_password}<enter>${var.root_password}<enter>",
-    "mkfs -t bfs -q /dev/disk/virtual/virtio_block/0/raw HaikuRunner<enter>",
+    "mkfs -t bfs -q /dev/disk/scsi/2/0/0/raw HaikuRunner<enter>",
     "mountvolume HaikuRunner<enter>",
     "Installer<enter><wait2s>",
     "<enter><wait3s>",
