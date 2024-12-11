@@ -32,7 +32,7 @@ configure_boot_scripts() {
   cat <<EOF >> "$script"
 #!/bin/bash
 
-RESOURCES_MOUNT_PATH='/NO NAME'
+RESOURCES_MOUNT_PATH='/no name'
 
 install_authorized_keys() {
   SSH_DIR="/boot/${SECONDARY_USER_USERNAME}/config/settings/ssh"
