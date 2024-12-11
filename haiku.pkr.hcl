@@ -117,8 +117,6 @@ source "qemu" "qemu" {
     "<down><down><down><down><down><down><down><down><down><down><right><wait2s>",
     "<down><down><down><down><down><down><down><down><down><down><down><down><down><down><down><down><down><down><down><down><down><down><down><down><down><enter><wait5s>",
     "echo \"PermitRootLogin yes\" >> /system/settings/ssh/sshd_config<enter>",
-    "echo \"debug_screen true\" >> /boot/home/config/settings/kernel/drivers/kernel<enter>",
-    "echo \"disable_onscreen_paging true\" >> /boot/home/config/settings/kernel/drivers/kernel<enter>",
     "passwd<enter>${var.root_password}<enter>${var.root_password}<enter>",
     "mkfs -t bfs -q /dev/disk/scsi/2/0/0/raw HaikuRunner<enter>",
     "mountvolume HaikuRunner<enter>",
