@@ -7,6 +7,10 @@ chmod 755 packer-plugin-qemu
 
 OS_VERSION="$1"; shift
 ARCHITECTURE="$1"; shift
+HCL=haiku.pkr.hcl
+if [[ $OS_VERSION == hrev* ]]; then
+	HCL=haiku-nightly.pkr.hcl
+fi
 
 packer build \
   -var os_version="$OS_VERSION" \
@@ -14,4 +18,4 @@ packer build \
   -var-file "var_files/$ARCHITECTURE.pkrvars.hcl" \
   -var-file "var_files/$OS_VERSION/$ARCHITECTURE.pkrvars.hcl" \
   "$@" \
-  haiku.pkr.hcl
+  $HCL
