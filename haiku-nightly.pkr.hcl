@@ -88,7 +88,8 @@ locals {
   image_architecture = var.architecture == "x86-64" ? "x86_64" : (
     var.architecture == "x86" ? "x86_gcc2h" : var.architecture
   )
-  vm_name = "haiku-${var.os_version}-${var.architecture}.qcow2"
+  vm_version = can(regex("^hrev", var.os_version)) ? "nightly" : var.os_version
+  vm_name = "haiku-${local.vm_version}-${var.architecture}.qcow2"
   iso_path = "release/master/${var.os_version}/${local.image_architecture}/haiku-nightly-anyboot.iso"
   qemu_architecture = var.architecture == "x86-64" ? "x86_64" : var.architecture
 }
