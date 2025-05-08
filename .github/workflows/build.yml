@@ -20,7 +20,7 @@ jobs:
         matrix:
           version:
             - 'r1beta5'
-            - 'hrev58859'
+            - 'hrev58861'
 
           architecture:
             - x86
