@@ -54,11 +54,11 @@ EOF
 
 
 install_extra_packages() {
-  pkgman update -y haiku haiku_devel haiku_loader haiku_datatranslators
+  pkgman update -y haiku haiku_devel haiku_loader
   if [[ "`uname -m`" == "BePC" ]]; then
-	  pkgman update -y haiku_x86 haiku_x86_devel webpositive_x86
+	  pkgman update -y haiku_x86 haiku_x86_devel webpositive_x86 haiku_datatranslators
   else
-	  pkgman update -y webpositive
+	  pkgman update -y webpositive haiku_datatranslators
   fi
   pkgman install -y cmd:rsync
 }

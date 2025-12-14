@@ -110,21 +110,21 @@ source "qemu" "qemu" {
   display = var.display
   accelerator = var.accelerator
 
-  boot_wait = "45s"
+  boot_wait = "55s"
 
   boot_command = [
-    "<enter><wait30s>",
-    "<menu><wait5s>",
-    "<down><down><down><down><down><down><down><down><down><down><right><wait2s>",
-    "<down><down><down><down><down><down><down><down><down><down><down><down><down><down><down><down><down><down><down><down><down><down><down><down><enter><wait5s>",
+    "<enter><wait50s>",
+    "<menu><wait10s>",
+    "<down><down><down><down><down><down><down><down><down><down><right><wait3s>",
+    "<down><down><down><down><down><down><down><down><down><down><down><down><down><down><down><down><down><down><down><down><down><down><down><down><enter><wait7s>",
     "echo \"PermitRootLogin yes\" >> /system/settings/ssh/sshd_config<enter>",
     "passwd<enter>${var.root_password}<enter>${var.root_password}<enter>",
     "mkfs -t bfs -q /dev/disk/scsi/2/0/0/raw HaikuRunner<enter>",
     "mountvolume HaikuRunner<enter>",
-    "Installer<enter><wait2s>",
-    "<enter><wait3s>",
-    "<tab><wait1s><tab><wait1s><down><wait1s><up><wait1s><down><wait1s><enter><wait1s><enter><wait45s>",
-    "<enter><wait1s>",
+    "Installer<enter><wait4s>",
+    "<enter><wait5s>",
+    "<tab><wait1s><tab><wait1s><down><wait1s><up><wait1s><down><wait1s><enter><wait1s><enter><wait50s>",
+    "<enter><wait2s>",
     "cp /system/settings/ssh/ssh_host_* /HaikuRunner/system/settings/ssh/<enter>",
     "shutdown -r<enter>"
   ]

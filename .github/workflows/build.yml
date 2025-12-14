@@ -14,7 +14,6 @@ jobs:
   build:
     name: Build
     runs-on: ubuntu-latest
-    container: ubuntu:22.04
     strategy:
         fail-fast: false
         matrix:
@@ -33,7 +32,7 @@ jobs:
           persist-credentials: false
 
       - name: Install Dependencies
-        run: apt update && apt install curl unzip "qemu-system-$QEMU_ARCHITECTURE" -y
+        run: sudo apt update && sudo apt install curl unzip "qemu-system-$QEMU_ARCHITECTURE" -y
         env:
           QEMU_ARCHITECTURE: ${{
               matrix.architecture == 'x86-64' && 'x86' ||
